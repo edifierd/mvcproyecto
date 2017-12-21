@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+  <title>{% block title %}{{NOMBRE_HOSPITAL}}{% endblock %}</title>
+  <link href="{{BASE_URL_INC}}vendor\twbs\bootstrap\dist\css\bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+  <link href="{{BASE_URL_INC}}vendor\twbs\bootstrap\dist\css\bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="{{BASE_URL_INC}}src\resource\public\css\bootstrap-multiselect.css" rel="stylesheet" type="text/css"/>
+  <link href="{{BASE_URL_INC}}src\resource\public\css\sb-admin.css" rel="stylesheet" type="text/css">
+  <link href="{{BASE_URL_INC}}src\resource\public\css\font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="{{BASE_URL_INC}}src\resource\public\css\sweetalert.css" rel="stylesheet" type="text/css">
+
+  {% block css %}{% endblock %}
+</head>
+<body>
+  <div id="wrapper">
+
+    <!-- Navigation -->
+    {% if app.current_user %}
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{{BASE_URL}}index/indexAdmin">Hospital {{NOMBRE_HOSPITAL}}</a>
+      </div>
+      <!-- Top Menu Items -->
+      <ul class="nav navbar-right top-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+          <ul class="dropdown-menu message-dropdown">
+            <li class="message-preview">
+              <a href="#">
+                <div class="media">
+                  <span class="pull-left">
+                    <img class="media-object" src="http://placehold.it/50x50" alt="">
+                  </span>
+                  <div class="media-body">
+                    <h5 class="media-heading"><strong>Nombreeeeeee</strong>
+                    </h5>
+                    <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="message-preview">
+              <a href="#">
+                <div class="media">
+                  <span class="pull-left">
+                    <img class="media-object" src="http://placehold.it/50x50" alt="">
+                  </span>
+                  <div class="media-body">
+                    <h5 class="media-heading"><strong>John Smith</strong>
+                    </h5>
+                    <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="message-preview">
+              <a href="#">
+                <div class="media">
+                  <span class="pull-left">
+                    <img class="media-object" src="http://placehold.it/50x50" alt="">
+                  </span>
+                  <div class="media-body">
+                    <h5 class="media-heading"><strong>John Smith</strong>
+                    </h5>
+                    <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="message-footer">
+              <a href="#">Read All New Messages</a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+          <ul class="dropdown-menu alert-dropdown">
+            <li>
+              <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
+            </li>
+            <li>
+              <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
+            </li>
+            <li>
+              <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
+            </li>
+            <li>
+              <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
+            </li>
+            <li>
+              <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
+            </li>
+            <li>
+              <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <a href="#">View All</a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ app.current_user.firstName}} {{ app.current_user.lastName}} <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="{{BASE_URL}}usuario/show/{{app.current_user.id}}"><i class="fa fa-fw fa-user"></i> Mi Perfil</a>
+            </li>
+            <li>
+              <a href="{{BASE_URL}}configuracion/update"><i class="fa fa-fw fa-gear"></i> Configuración</a>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <a href="{{BASE_URL}}usuario/logout"><i class="fa fa-fw fa-power-off"></i> Cerrar Sesión</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav side-nav">
+          <li class="active">
+            <a href="{{BASE_URL}}index/indexAdmin"><i class="fa fa-fw fa-dashboard"></i> Inicio</a>
+          </li>
+          <li>
+            <a href="javascript:;" data-toggle="collapse" data-target="#usuarios"><i class="fa fa-users fa-arrows-v"></i> Usuarios <i class="fa fa-fw fa-caret-down"></i></a>
+            <ul id="usuarios" class="collapse">
+              {% if app.checkPermisions('usuario_index') %}
+                <li>
+                  <a href="{{BASE_URL}}usuario">Listado Usuarios</a>
+                </li>
+              {% endif %}
+              {% if app.checkPermisions('usuario_create') %}
+                <li>
+                  <a href="{{BASE_URL}}usuario/create">Alta Usuario</a>
+                </li>
+              {% endif %}
+            </ul>
+          </li>
+          <li>
+            <a href="javascript:;" data-toggle="collapse" data-target="#pacientes"><i class="fa fa-heartbeat"></i> Pacientes <i class="fa fa-fw fa-caret-down"></i></a>
+            <ul id="pacientes" class="collapse">
+              {% if app.checkPermisions('paciente_index') %}
+                <li>
+                  <a href="{{BASE_URL}}paciente">Listado Pacientes</a>
+                </li>
+              {% endif %}
+              {% if app.checkPermisions('paciente_create') %}
+                <li>
+                  <a href="{{BASE_URL}}paciente/create">Alta Paciente</a>
+                </li>
+              {% endif %}
+            </ul>
+          </li>
+          <li>
+            <a href="javascript:;" data-toggle="collapse" data-target="#demograficos"><i class="fa fa-pie-chart"></i> Datos Demograficos <i class="fa fa-fw fa-caret-down"></i></a>
+            <ul id="demograficos" class="collapse">
+              {% if app.checkPermisions('datosdemograficos_graficos') %}
+                <li>
+                  <a href="{{BASE_URL}}datosdemograficos/graficos">Graficas</a>
+                </li>
+              {% endif %}
+            </ul>
+          </li>
+
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    {% endif %}
+
+    <div id="page-wrapper">
+
+      <div class="container-fluid">
+
+        <!-- JQUERRY MENSAJES-->
+        <div class="alert alert-warning" role="alert" id="flashBag" hidden>
+          <ul></ul>
+        </div>
+
+        {% if flashBag.isEmpty('success') %}
+        <div class="alert alert-success" role="alert">
+          <ul>
+            {% set msj = flashBag.getMsj('success') %}
+            {% for success in msj %}
+              <li>{{ success }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+
+        {% if flashBag.isEmpty('info') %}
+        <div class="alert alert-info" role="alert">
+          <ul>
+            {% set msj = flashBag.getMsj('info') %}
+            {% for info in msj %}
+              <li>{{ info }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+
+        {% if flashBag.isEmpty('warning') %}
+        <div class="alert alert-warning" role="alert">
+          <ul>
+            {% set msj = flashBag.getMsj('warning') %}
+            {% for warning in msj %}
+              <li>{{ warning }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+
+        {% if flashBag.isEmpty('danger') %}
+        <div class="alert alert-danger" role="alert">
+          <ul>
+            {% set msj = flashBag.getMsj('danger') %}
+            {% for danger in msj %}
+              <li>{{ danger }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+
+        {% block body %}{% endblock %}
+
+      </div>
+      <!-- /.container-fluid -->
+
+    </div>
+    <!-- /#page-wrapper -->
+
+  </div>
+
+  <!-- sector de scripts -->
+  <script type="text/javascript" src="{{BASE_URL_INC}}src/resource/public/js/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="{{BASE_URL_INC}}vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="{{BASE_URL_INC}}src/resource/public/js/bootstrap-multiselect.js"></script>
+  <script type="text/javascript" src="{{BASE_URL_INC}}src/resource/public/js/base.js"></script>
+  <script type="text/javascript" src="{{BASE_URL_INC}}src/resource/public/js/sweetalert.min.js"></script>
+  <script type="text/javascript" src="{{BASE_URL_INC}}src/resource/public/js/highcharts.js"></script>
+  <script type="text/javascript" src="{{BASE_URL_INC}}src/resource/public/js/highcharts-data.js"></script>
+  <script type="text/javascript" src="{{BASE_URL_INC}}src/resource/public/js/highcharts-exporting.js"></script>
+  {% block js %}{% endblock %}
+
+</body>
+</html>

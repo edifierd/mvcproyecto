@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Datos de control de salud{% endblock %}
+
+{% block body %}
+  <h1>Datos de control de salud</h1>
+
+
+    <form class="form-horizontal" role="form" method="post" action="#">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="fecha" class="col-lg-2 control-label">fecha</label>
+          <div class="col-lg-10">
+            <input type="date" name="fecha" value="{{control.fecha}}" class="form-control" disabled require>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="edad" class="col-lg-2 control-label">Edad</label>
+          <div class="col-lg-10">
+            <input type="number" name="edad" value="{{edad}}" class="form-control" disabled require>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="peso" class="col-lg-2 control-label">peso</label>
+          <div class="col-lg-10">
+            <input type="number" name="peso" value="{{control.peso}}" class="form-control" disabled require>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="vacunas_completas" class="col-lg-2 control-label">vacunas completas</label>
+          <div class="col-lg-10">
+            <select class="form-control" name="vacunas_completas" id="vacunas_completas" disabled required>
+              <option value="1" {% if control.vacunas_completas == '1' %}selected{% endif %}>Si</option>
+              <option value="0" {% if control.vacunas_completas == '0' %}selected{% endif %}>No</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="maduracion_acorde" class="col-lg-2 control-label">maduracion acorde</label>
+          <div class="col-lg-10">
+            <select class="form-control" name="maduracion_acorde" id="maduracion_acorde" disabled>
+              <option value="1" {% if control.maduracion_acorde == '1' %}selected{% endif %}>Si</option>
+              <option value="0" {% if control.maduracion_acorde == '0' %}selected{% endif %}>No</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="maduracion_observaciones" class="col-lg-2 control-label">maduracion observaciones</label>
+          <div class="col-lg-10">
+            <input type="text" name="maduracion_observaciones" value="{{control.maduracionObservaciones}}" class="form-control" disabled>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="ex_fisico_normal" class="col-lg-2 control-label">Examen fisico normal</label>
+          <div class="col-lg-10">
+            <select class="form-control" name="ex_fisico_normal" id="ex_fisico_normal" disabled>
+              <option value="1"{% if control.ex_fisico_normal == '1' %}selected{% endif %}>Si</option>
+              <option value="0"{% if control.ex_fisico_normal == '0' %}selected{% endif %}>No</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="ex_fisico_observaciones" class="col-lg-2 control-label">Examen fisico observaciones</label>
+          <div class="col-lg-10">
+            <textarea name="ex_fisico_observaciones" rows="4" cols="80" class="form-control" maxlength="255" disabled>{{control.exFisicoObservaciones}}</textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="pc" class="col-lg-2 control-label">pc</label>
+          <div class="col-lg-10">
+            <input type="number" name="pc" value="{{control.pc}}" class="form-control" disabled>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="ppc" class="col-lg-2 control-label">ppc</label>
+          <div class="col-lg-10">
+            <input type="number" name="ppc" value="{{control.ppc}}" class="form-control" disabled>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="talla" class="col-lg-2 control-label">talla</label>
+          <div class="col-lg-10">
+            <input type="number" name="talla" value="{{control.talla}}" class="form-control" disabled>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="alimentacion" class="col-lg-2 control-label">alimentacion</label>
+          <div class="col-lg-10">
+            <input type="text" name="alimentacion" value="{{control.alimentacion}}" class="form-control" disabled>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="observaciones_generales" class="col-lg-2 control-label">observaciones generales</label>
+          <div class="col-lg-10">
+            <textarea name="observaciones_generales" rows="4" cols="80" class="form-control" maxlength="255" disabled>{{control.observacionesGenerales}}</textarea>
+          </div>
+        </div>
+
+      </div>
+
+    </form>
+
+
+
+{% endblock %}

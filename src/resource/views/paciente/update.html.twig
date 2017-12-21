@@ -1,0 +1,172 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Paciente{% endblock %}
+
+{% block body %}
+<div class="text-center">
+  <h1>Editar Paciente</h1>
+</div>
+<div class="row">
+  <form class="form-horizontal" role="form" method="post" action="{{BASE_URL}}paciente/update/{{p.id}}">
+    <div class="col-md-6">
+      <h3 style="text-align:center;">Datos personales</h3 style="text-align:center;">
+        <div class="form-group">
+          <label for="apellido" class="col-lg-2 control-label">Apellido:</label>
+          <div class="col-lg-10">
+            <input type="text" class="form-control" name="apellido" id="apellido" value="{{p.apellido}}" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="nombre" class="col-lg-2 control-label">Nombre:</label>
+          <div class="col-lg-10">
+            <input type="text" class="form-control" name="nombre" id="nombre" value="{{p.nombre}}" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="domicilio" class="col-lg-2 control-label">domicilio:</label>
+          <div class="col-lg-10">
+            <input type="text" class="form-control" name="domicilio" id="domicilio" value="{{p.domicilio}}" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="fecha_nac" class="col-lg-2 control-label">fecha Nacimiento:</label>
+          <div class="col-lg-10">
+            <input type="date" class="form-control" name="fecha_nac" id="fecha_nac" value="{{p.fechaNac}}" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="genero" class="col-lg-2 control-label">Genero:</label>
+          <div class="col-lg-10">
+            <select name="genero" id="genero" class="form-control" required>
+              <option value="M" {% if p.genero == 'M' %}selected{% endif %}>M</option>
+              <option value="F" {% if p.genero == 'F' %}selected{% endif %}>F</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="obra_social" class="col-lg-2 control-label">Obra Social</label>
+          <div class="col-lg-10">
+            <select class="form-control" name="obra_social" id="obra_social" required>
+              {% for item in obras_sociales %}
+              <option value="{{item.id}}" {% if item.id == p.obraSocial.id %}selected{% endif %}>{{item.nombre}}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="tipo_documento" class="col-lg-2 control-label">Tipo</label>
+          <div class="col-lg-10">
+
+            <select class="form-control" name="tipo_documento" id="tipo_documento" required>
+              {% for item in tipo_documentos %}
+              <option value="{{item.id}}" {% if item.id == p.tipoDocumento.id %}selected{% endif %}>{{item.nombre}}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="documento" class="col-lg-2 control-label">Numero</label>
+          <div class="col-lg-10">
+            <input type="number" name="documento" id="" class="form-control" value="{{p.numeroDocumento}}" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="telefono" class="col-lg-2 control-label">Telefono</label>
+          <div class="col-lg-10">
+            <input type="text" name="telefono" id="" class="form-control" value="{{p.telefono}}" required>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-6">
+        <h3 style="text-align:center;">Datos Demográficos</h3 style="text-align:center;">
+
+          <div class="form-group">
+            <label for="heladera" class="col-lg-2 control-label">Heladera</label><br />
+            <div class="col-lg-10">
+              <select class="form-control" name="heladera">
+                {% if datosDemograficos.heladera == 'Si' %}
+                  <option value="1" selected>Si</option>
+                  <option value="0">No</option>
+                  {% else %}
+                      <option value="1">Si</option>
+                      <option value="0" selected>No</option>
+                {% endif %}
+                  <option value="none">Sin seleccionar</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="electricidad" class="col-lg-2 control-label">Electricidad</label><br />
+            <div class="col-lg-10">
+            <select class="form-control" name="electricidad">
+              {% if datosDemograficos.electricidad == 'Si' %}
+                <option value="1" selected>Si</option>
+                <option value="0">No</option>
+                {% else %}
+                    <option value="1">Si</option>
+                    <option value="0" selected>No</option>
+              {% endif %}
+              <option value="none">Sin seleccionar</option>
+            </select>
+          </div>
+          </div>
+
+          <div class="form-group">
+            <label for="mascota" class="col-lg-2 control-label">Mascota</label><br />
+            <div class="col-lg-10">
+              <select class="form-control" name="mascota">
+                {% if datosDemograficos.mascota == 'Si' %}
+                <option value="1" selected>Si</option>
+                <option value="0">No</option>
+                {% else %}
+                <option value="1">Si</option>
+                <option value="0" selected>No</option>
+                {% endif %}
+                <option value="none">Sin seleccionar</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="tipo_vivienda" class="col-lg-2 control-label">Tipo Vivienda</label>
+            <div class="col-lg-10">
+              <select class="form-control" name="tipo_vivienda" id="tipo_vivienda" required>
+                {% for item in viviendas %}
+                <option value="{{item.id}}" {% if item.id == datosDemograficos.vivienda.id %}selected{% endif %}>{{item.nombre}}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="tipo_calefaccion" class="col-lg-2 control-label">Tipo Calefacción</label>
+            <div class="col-lg-10">
+              <select class="form-control" name="tipo_calefaccion" id="tipo_calefaccion" required>
+                {% for item in calefaccion %}
+                <option value="{{item.id}}" {% if item.id == datosDemograficos.calefaccion.id %}selected{% endif %}>{{item.nombre}}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="tipo_agua" class="col-lg-2 control-label">Tipo Agua</label>
+            <div class="col-lg-10">
+              <select class="form-control" name="tipo_agua" id="tipo_agua" required>
+                {% for item in agua %}
+                <option value="{{item.id}}" {% if item.id == datosDemograficos.agua.id %}selected{% endif %}>{{item.nombre}}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+      </div>
+
+      <button type="submit" name="" id="submit" class="btn btn-success">Guardar</button>
+    </form>
+
+  </div>
+
+
+  {% endblock %}

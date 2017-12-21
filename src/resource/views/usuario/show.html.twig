@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Perfil de Usuario{% endblock %}
+
+{% block css %}
+<link href="{{CSS_BASE_URL}}/show.css" type="text/css" rel="stylesheet" media="screen,projection">
+{% endblock %}
+
+{% block body %}
+
+
+<div class="row">
+  <div class="col-md-12 menu">
+    <ul class="nav nav-pills">
+      {% if app.checkPermisions('usuario_destroy') %}
+        {% if app.current_user.id !=  usuario.id %}
+          <li role="presentation" >
+            <a href="#" data-url="{{BASE_URL}}usuario/destroy/{{usuario.id}}" class="accion"  title="Eliminar"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</a>
+          </li>
+        {% endif %}
+      {% endif %}
+      {% if app.checkPermisions('usuario_update') %}
+        <li role="presentation" >
+          <a href="{{BASE_URL}}usuario/update/{{usuario.id}}" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
+        </li>
+      {% endif %}
+      {% if (app.checkPermisions('usuario_suspend') or app.checkPermisions('usuario_activate'))  %}
+        <li role="presentation" >
+          {% if usuario.activo == "Activo" %}
+            <a href="{{BASE_URL}}usuario/suspend/{{usuario.id}}"  title="Suspender"><i class="fa fa-ban" aria-hidden="true"></i> Suspender</a>
+          {% else %}
+            <a href="{{BASE_URL}}usuario/activate/{{usuario.id}}" title="Activar"><i class="fa fa-level-up" aria-hidden="true"></i> Activar</a>
+          {% endif %}
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+  <div class="col-md-7">
+    <div class="panel panel-default">
+      <div class="panel-heading"><h4 >Perfil del Usuario</h4></div>
+      <div class="panel-body">
+
+        <div class="box box-info">
+
+          <div class="box-body">
+            <div class="col-sm-6">
+              <div  align="center"> <img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive">
+
+                <input id="profile-image-upload" class="hidden" type="file">
+                <div style="color:#999;" >Clic en la imagen para cambiarla</div>
+                <!--Upload Image Js And Css-->
+              </div>
+              <br>
+              <!-- /input-group -->
+            </div>
+            <div class="col-sm-6">
+              <h4 style="color:#00b1b1;">{{usuario.email}}</h4>
+              {% for rol in usuario.rol %}
+              <span class="label label-success">{{rol.nombre}}</span>
+              {% endfor %}
+            </div>
+            <div class="clearfix"></div>
+            <hr style="margin:5px 0 5px 0;">
+
+
+            <div class="col-sm-5 col-xs-6 tital " >Nombre:</div><div class="col-sm-7 col-xs-6 ">{{usuario.firstName}}</div>
+            <div class="clearfix"></div>
+            <div class="bot-border"></div>
+
+            <div class="col-sm-5 col-xs-6 tital " >Apellido:</div><div class="col-sm-7"> {{usuario.lastName}}</div>
+            <div class="clearfix"></div>
+            <div class="bot-border"></div>
+
+            <div class="col-sm-5 col-xs-6 tital " >Fecha de alta:</div><div class="col-sm-7">{{usuario.createdAt|date("m/d/Y H:i:s")}}</div>
+            <div class="clearfix"></div>
+            <div class="bot-border"></div>
+
+            <div class="col-sm-5 col-xs-6 tital " >Ultima actualización:</div><div class="col-sm-7">{{usuario.updateAt|date("m/d/Y H:i:s")}}</div>
+            <div class="clearfix"></div>
+            <div class="bot-border"></div>
+
+            <div class="col-sm-5 col-xs-6 tital " >Estado:</div><div class="col-sm-7">{{usuario.activo}}</div>
+            <div class="clearfix"></div>
+            <div class="bot-border"></div>
+
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
+    </div>
+  </div>
+    {% endblock %}
+
+    {% block js %}
+      <script language="JavaScript" src="{{JS_BASE_URL}}/show.js"></script>
+    {% endblock %}

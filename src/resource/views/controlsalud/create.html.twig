@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Datos de control de salud{% endblock %}
+
+{% block body %}
+  <h1>Datos de control de salud</h1>
+
+
+
+    <form class="form-horizontal" role="form" method="post" action="{{BASE_URL}}controlSalud/insertarControlDeSalud/{{paciente.id}}">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="fecha" class="col-lg-2 control-label">fecha</label>
+          <div class="col-lg-10">
+            <input type="date" name="fecha" value="" class="form-control" require>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="edad" class="col-lg-2 control-label">Edad</label>
+          <div class="col-lg-10">
+
+            <input type="number" name="edad" value="{{paciente.edad}}" class="form-control" disabled require>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="peso" class="col-lg-2 control-label">peso</label>
+          <div class="col-lg-10">
+            <input type="number" name="peso" value="" class="form-control" require>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="vacunas_completas" class="col-lg-2 control-label">vacunas completas</label>
+          <div class="col-lg-10">
+            <select class="form-control" name="vacunas_completas" id="vacunas_completas" required>
+              <option value="1">Si</option>
+              <option value="0">No</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="maduracion_acorde" class="col-lg-2 control-label">maduracion acorde</label>
+          <div class="col-lg-10">
+            <select class="form-control" name="maduracion_acorde" id="maduracion_acorde" required>
+              <option value="1">Si</option>
+              <option value="0">No</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="maduracion_observaciones" class="col-lg-2 control-label">maduracion observaciones</label>
+          <div class="col-lg-10">
+            <input type="text" name="maduracion_observaciones" value="" class="form-control" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="ex_fisico_normal" class="col-lg-2 control-label">Examen fisico normal</label>
+          <div class="col-lg-10">
+            <select class="form-control" name="ex_fisico_normal" id="ex_fisico_normal" required>
+              <option value="1">Si</option>
+              <option value="0">No</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="ex_fisico_observaciones" class="col-lg-2 control-label">Examen fisico observaciones</label>
+          <div class="col-lg-10">
+            <textarea name="ex_fisico_observaciones" rows="4" cols="80" class="form-control" maxlength="255" require></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="pc" class="col-lg-2 control-label">pc</label>
+          <div class="col-lg-10">
+            <input type="number" name="pc" value="" class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="ppc" class="col-lg-2 control-label">ppc</label>
+          <div class="col-lg-10">
+            <input type="number" name="ppc" value="" class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="talla" class="col-lg-2 control-label">talla</label>
+          <div class="col-lg-10">
+            <input type="number" name="talla" value="" class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="alimentacion" class="col-lg-2 control-label">alimentacion</label>
+          <div class="col-lg-10">
+            <input type="text" name="alimentacion" value="" class="form-control" >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="observaciones_generales" class="col-lg-2 control-label">observaciones generales</label>
+          <div class="col-lg-10">
+            <textarea name="observaciones_generales" rows="4" cols="80" class="form-control" maxlength="255"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-offset-2 col-lg-10">
+            <button type="submit" class="btn btn-default">Aceptar</button>
+          </div>
+        </div>
+
+      </div>
+
+    </form>
+
+
+
+{% endblock %}

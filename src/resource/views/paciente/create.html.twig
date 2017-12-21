@@ -1,0 +1,151 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nuevo Paciente{% endblock %}
+
+{% block body %}
+
+<div class="text-center">
+  <h1>Agregar Paciente</h1>
+  
+</div>
+<div class="row">
+  <form class="form-horizontal" role="form" method="post" action="{{BASE_URL}}paciente/create">
+    <div class="col-md-6">
+      <h3 style="text-align:center;">Datos personales</h3>
+        <div class="form-group">
+          <label for="apellido" class="col-lg-2 control-label">Apellido:</label>
+          <div class="col-lg-10">
+            <input type="text" class="form-control" name="apellido" id="apellido" value="" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="nombre" class="col-lg-2 control-label">Nombre:</label>
+          <div class="col-lg-10">
+            <input type="text" class="form-control" name="nombre" id="nombre" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="domicilio" class="col-lg-2 control-label">domicilio:</label>
+          <div class="col-lg-10">
+            <input type="text" class="form-control" name="domicilio" id="domicilio" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="fecha_nac" class="col-lg-2 control-label">fecha Nacimiento:</label>
+          <div class="col-lg-10">
+            <input type="date" class="form-control" name="fecha_nac" id="fecha_nac" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="genero" class="col-lg-2 control-label">Genero:</label>
+          <div class="col-lg-10">
+            <select name="genero" id="genero" class="form-control" required>
+              <option value="M">M</option>
+              <option value="F">F</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="obra_social" class="col-lg-2 control-label">Obra Social</label>
+          <div class="col-lg-10">
+            <select class="form-control" name="obra_social" id="obra_social" required>
+              {% for item in obras_sociales %}
+              <option value="{{item.id}}">{{item.nombre}}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="tipo_documento" class="col-lg-2 control-label">Tipo</label>
+          <div class="col-lg-10">
+            <select class="form-control" name="tipo_documento" id="tipo_documento" required>
+              {% for item in tipo_documentos %}
+              <option value="{{item.id}}">{{item.nombre}}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="documento" class="col-lg-2 control-label">Numero</label>
+          <div class="col-lg-10">
+            <input type="number" name="documento" id="" class="form-control" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="telefono" class="col-lg-2 control-label">Telefono</label>
+          <div class="col-lg-10">
+            <input type="text" name="telefono" id="" class="form-control" required>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h3 style="text-align:center;">Datos Demográficos</h3 style="text-align:center;">
+          <div class="form-group">
+            <label for="heladera" class="col-lg-2 control-label">heladera</label>
+            <div class="col-lg-10">
+              <select class="form-control" name="heladera" id="heladera" required>
+                <option value="1">Si</option>
+                <option value="0">No</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="electricidad" class="col-lg-2 control-label">Electricidad</label>
+            <div class="col-lg-10">
+              <select class="form-control" name="electricidad" id="electricidad" required>
+                <option value="1">Si</option>
+                <option value="0">No</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="mascota" class="col-lg-2 control-label">Mascota</label>
+            <div class="col-lg-10">
+              <select class="form-control" name="mascota" id="mascota" required>
+                <option value="1">Si</option>
+                <option value="0">No</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="vivienda" class="col-lg-2 control-label">Vivienda</label>
+            <div class="col-lg-10">
+              <select class="form-control" name="vivienda" id="vivienda" required>
+                {% for item in viviendas %}
+                <option value="{{item.id}}">{{item.nombre}}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="calefaccion" class="col-lg-2 control-label">Calefación</label>
+            <div class="col-lg-10">
+              <select class="form-control" name="calefaccion" id="calefaccion" required>
+                {% for item in calefaccion %}
+                <option value="{{item.id}}">{{item.nombre}}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="agua" class="col-lg-2 control-label">Agua</label>
+            <div class="col-lg-10">
+              <select class="form-control" name="agua" id="agua" required>
+                {% for item in agua %}
+                <option value="{{item.id}}">{{item.nombre}}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12" style="text-align:center;">
+          <br>
+          <button type="submit" class="btn btn-default">Aceptar</button>
+        </div>
+
+      </form>
+
+</div>
+
+
+{% endblock %}

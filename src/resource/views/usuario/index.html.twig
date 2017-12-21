@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Perfil de Usuario{% endblock %}
+
+{% block css %}
+<link href="{{CSS_BASE_URL}}/index.css" type="text/css" rel="stylesheet" media="screen,projection">
+{% endblock %}
+
+{% block body %}
+
+<div class="row barraSuperior">
+  <div class="col-md-3">
+    <h3>Listado de usuarios</h3>
+  </div>
+  <div class="col-md-9">
+  </div>
+  <div class="col-md-12 busqueda">
+    <form class="form-inline" action="{{BASE_URL}}usuario" method="post">
+      <div class="form-group">
+        <label class="sr-only" for="nombreyapellido">Nombre y Apellido</label>
+        <input type="text" class="form-control" id="nombreyapellido" value="{{nombreyapellido}}" name="nombreyapellido" placeholder="Nombre y apellido...">
+      </div>
+      <div class="form-group">
+        <select class="form-control" name="estado">
+          <option value="todos" {% if estado == 'todos' %}selected{% endif %}>Todos</option>
+          <option value="1" {% if estado == '1' %}selected{% endif %}>Activo</option>
+          <option value="0" {% if estado == '0' %}selected{% endif %}>Suspendido</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-default">Buscar</button>
+      <a href="{{BASE_URL}}usuario/create" class="btn btn-success" title="Nuevo Usuario">Nuevo Usuario</a>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="table-responsive">
+
+    <table class="table table-hover">
+      <tr>
+        <th>Nombre y Apellido </th><th>Correo</th><th>Roles</th><th>Estado</th><th>Ultima Actualización</th><th>Acciones</th>
+      </tr>
+      {% for user in usuarios %}
+      <tr link="{{BASE_URL}}usuario/show/{{user.id}}" class="usuarioFila">
+        <td>{{user.firstName}} {{user.lastName}}</td>
+        <td>{{user.email}}</td>
+        <td>
+          <ul>
+            {% for rol in user.rol %}
+            <li>{{rol.nombre}}</li>
+            {% endfor %}
+          </ul>
+        </td>
+        <td>{{user.activo}}</td>
+        <td>{{user.updateAt|date("m/d/Y H:i:s")}}</td>
+        <td>
+          {% if app.current_user.id !=  user.id %}
+          <a href="#" data-url="{{BASE_URL}}usuario/destroy/{{user.id}}" class="btn-sm btn-danger accion" title="Eliminar"><i class="fa fa-trash" aria-hidden="true"></i></a>
+          {% endif %}
+          <a href="{{BASE_URL}}usuario/update/{{user.id}}" class="btn-sm btn-info" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+          {% if user.activo == "Activo" %}
+          <a href="#" data-url="{{BASE_URL}}usuario/suspend/{{user.id}}" class="btn-sm btn-warning accion" title="Suspender"><i class="fa fa-ban" aria-hidden="true"></i></a>
+          {% else %}
+          <a href="#" data-url="{{BASE_URL}}usuario/activate/{{user.id}}" class="btn-sm btn-success accion" title="Activar"><i class="fa fa-level-up" aria-hidden="true"></i></a>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+</div>
+
+
+
+<div class="row">
+  <div class="col-md-12 pag_footer">
+    <nav aria-label="Paginacion">
+      <ul class="pagination">
+        <li {% if pagina == 1 %} class="disabled" {% endif %} >
+          <a {% if pagina != 1 %}href="{{BASE_URL}}usuario/index/1{% if estado is defined %}/{{estado}}{% endif %}{% if nombreyapellido is defined %}/{{nombreyapellido}}{% endif %}"{% endif %} aria-label="Anterior">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        {% for i in 1..cant_pag %}
+          <li {% if i == pagina %} class="active" {% endif %} >
+            <a href="{{BASE_URL}}usuario/index/{{i}}{% if estado is defined %}/{{estado}}{% endif %}{% if nombreyapellido is defined %}/{{nombreyapellido}}{% endif %}">{{i}}</a>
+          </li>
+        {% endfor %}
+        <li {% if pagina == cant_pag %} class="disabled" {% endif %}>
+          <a {% if pagina != cant_pag %}href="{{BASE_URL}}usuario/index/{{cant_pag}}{% if estado is defined %}/{{estado}}{% endif %}{% if nombreyapellido is defined %}/{{nombreyapellido}}{% endif %}"{% endif %} aria-label="Siguiente">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+
+{% endblock %}
+
+{% block js %}
+<script language="JavaScript" src="{{JS_BASE_URL}}/index.js"></script>
+{% endblock %}

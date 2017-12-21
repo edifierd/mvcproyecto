@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+  <title>{{NOMBRE_HOSPITAL}}</title>
+  <link href="{{BASE_URL_INC}}vendor\twbs\bootstrap\dist\css\bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+  <link href="{{BASE_URL_INC}}vendor\twbs\bootstrap\dist\css\bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="{{BASE_URL_INC}}src\resource\public\css\sb-admin.css" rel="stylesheet" type="text/css">
+  <link href="{{BASE_URL_INC}}src\resource\public\css\plugins\morris.css" rel="stylesheet" type="text/css">
+  <link href="{{BASE_URL_INC}}src\resource\public\css\font-awesome.min.css" rel="stylesheet" type="text/css">
+</head>
+<body class="bg-dark">
+
+
+  <div class="container">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{{BASE_URL}}index">
+            Bienvenido al hospital {{NOMBRE_HOSPITAL}}
+          </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="{{BASE_URL}}usuario/login">Ingresar al sistema</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        {% if flashBag.isEmpty('success') %}
+        <div class="alert alert-success" role="alert">
+          <ul>
+            {% set msj = flashBag.getMsj('success') %}
+            {% for success in msj %}
+            <li>{{ success }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+
+        {% if flashBag.isEmpty('info') %}
+        <div class="alert alert-info" role="alert">
+          <ul>
+            {% set msj = flashBag.getMsj('info') %}
+            {% for info in msj %}
+            <li>{{ info }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+
+        {% if flashBag.isEmpty('warning') %}
+        <div class="alert alert-warning" role="alert">
+          <ul>
+            {% set msj = flashBag.getMsj('warning') %}
+            {% for warning in msj %}
+            <li>{{ warning }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+
+        {% if flashBag.isEmpty('danger') %}
+        <div class="alert alert-danger" role="alert">
+          <ul>
+            {% set msj = flashBag.getMsj('danger') %}
+            {% for danger in msj %}
+            <li>{{ danger }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+
+    <div class="jumbotron">
+      <h1>Bienvenido al hospital {{NOMBRE_HOSPITAL}}!</h1>
+      <p style="color:red;">Actualmente nos enconramos en mantenimiento. Visita nuestro sitio mas tarde, te esperamos.</p>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- sector de scripts -->
+<script type="text/javascript" src="{{BASE_URL_INC}}src/resource/public/js/jquery.min.js"></script>
+<script type="text/javascript" src="{{BASE_URL_INC}}vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>

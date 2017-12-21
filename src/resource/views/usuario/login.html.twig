@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+  <title>{{NOMBRE_HOSPITAL}}</title>
+  <link href="{{BASE_URL_INC}}vendor\twbs\bootstrap\dist\css\bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+  <link href="{{BASE_URL_INC}}vendor\twbs\bootstrap\dist\css\bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="{{BASE_URL_INC}}src\resource\public\css\sb-admin.css" rel="stylesheet" type="text/css">
+  <link href="{{BASE_URL_INC}}src\resource\public\css\plugins\morris.css" rel="stylesheet" type="text/css">
+  <link href="{{BASE_URL_INC}}src\resource\public\css\font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <style media="screen">
+  .login{
+    margin-top: 20%;
+  }
+  </style>
+</head>
+<body class="bg-dark">
+
+  <div class="container">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="{{BASE_URL}}index">
+            Bienvenido al hospital {{NOMBRE_HOSPITAL}}
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="row">
+      <div class="col-md-4"></div>
+
+      <div class="col-md-4">
+
+        {% if flashBag.isEmpty('success') %}
+        <div class="alert alert-success" role="alert">
+          <ul>
+            {% set msj = flashBag.getMsj('success') %}
+            {% for success in msj %}
+            <li>{{ success }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+
+        {% if flashBag.isEmpty('info') %}
+        <div class="alert alert-info" role="alert">
+          <ul>
+            {% set msj = flashBag.getMsj('info') %}
+            {% for info in msj %}
+            <li>{{ info }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+
+        {% if flashBag.isEmpty('warning') %}
+        <div class="alert alert-warning" role="alert">
+          <ul>
+            {% set msj = flashBag.getMsj('warning') %}
+            {% for warning in msj %}
+            <li>{{ warning }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+
+        {% if flashBag.isEmpty('danger') %}
+        <div class="alert alert-danger" role="alert">
+          <ul>
+            {% set msj = flashBag.getMsj('danger') %}
+            {% for danger in msj %}
+            <li>{{ danger }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+
+        <div class="panel panel-default login">
+          <div class="panel-heading">Inicio de sesión</div>
+          <div class="panel-body">
+            <form action="{{BASE_URL}}usuario/login" method="post">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input class="form-control" id="email" name="email" type="email"  value="{{email}}" placeholder="Ingrese su email" required>
+              </div>
+              <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input class="form-control" id="password" name="password" type="password" placeholder="Ingrese su contraseña" required>
+              </div>
+              <input class="btn btn-primary btn-block" type="submit" value="Iniciar Sesión">
+            </form>
+            <div class="text-center">
+              <a class="d-block small" href="forgot-password.html">Olvido su contraseña?</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4"></div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- sector de scripts -->
+  <script type="text/javascript" src="{{BASE_URL_INC}}src/resource/public/js/jquery.min.js"></script>
+  <script type="text/javascript" src="{{BASE_URL_INC}}vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>

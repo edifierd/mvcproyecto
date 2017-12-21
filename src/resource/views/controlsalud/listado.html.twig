@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listado de controles {% endblock %}
+
+{% block body %}
+  <h1>Datos de control de {{paciente.nombre}} {{paciente.apellido}}</h1>
+  {% if app.checkPermisions('controlsalud_create') %}
+    <li role="presentation" >
+      <a href="{{BASE_URL}}controlSalud/create/{{paciente.id}}"  title="Nuevo control"><i class="fa fa-archive" aria-hidden="true"></i> Nuevo Control</a>
+    </li>
+  {% endif %}
+
+
+  <div class="row">
+    <div class="table-responsive">
+
+      <table class="table table-hover">
+        <tr>
+          <th>Fecha</th><th>Nombre y Apellido</th><th>Acciones</th>
+        </tr>
+        {% for c in controles %}
+        <tr link="{{BASE_URL}}controlSalud/showControl/{{c.id}}" class="usuarioFila">
+          <td>{{c.fecha}}</td>
+          <td>{{c.paciente.apellido}} {{c.paciente.nombre}}</td>
+          <td>
+            {% if app.checkPermisions('controlsalud_destroy') %}
+                <a href="{{BASE_URL}}controlSalud/destroy/{{c.id}}" class="btn-sm btn-danger" title="Eliminar"><i class="fa fa-trash" aria-hidden="true"></i></a>
+            {% endif %}
+            {% if app.checkPermisions('controlsalud_update') %}
+                <a href="{{BASE_URL}}controlSalud/update/{{c.id}}" class="btn-sm btn-warning" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+            {% endif %}
+            {% if app.checkPermisions('controlsalud_showcontrol') %}
+                <a href="{{BASE_URL}}controlSalud/showControl/{{c.id}}" class="btn-sm btn-success" title="Ver"><i class="fa fa-eye" aria-hidden="true"></i></a>
+            {% endif %}
+
+
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+  </div>
+
+
+
+{% endblock %}
+
+{% block js %}
+<script language="JavaScript" src="{{JS_BASE_URL}}/index.js"></script>
+{% endblock %}

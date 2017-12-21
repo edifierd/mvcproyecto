@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listado de Datos Demograficos{% endblock %}
+
+{% block body %}
+  <h1>Listado de Datos Demograficos</h1>
+      <ul>
+        {% for item in datosDemograficos %}
+          <li> {{item.heladera}}</li>
+          <li> {{item.electricidad}}</li>
+          <li> {{item.mascota}}</li>
+          <li> {{item.vivienda.nombre}}</li>
+          <li> {{item.calefaccion.nombre}}</li>
+          <li> {{item.agua.nombre}}</li>
+          <br>
+      {% endfor %}
+    </ul>
+
+{% endblock %}

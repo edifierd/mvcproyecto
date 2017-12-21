@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nuevo Dato Demográfico{% endblock %}
+
+{% block body %}
+  <h1>Nuevo registro de Datos Demograficos</h1>
+  <ul>
+
+    <form class="form-horizontal" role="form" method="post" action="{{BASE_URL}}datosDemograficos/insertarDatoDemografico">
+      <div class="form-group">
+        <label for="heladera" class="col-lg-2 control-label">heladera</label>
+        <div class="col-lg-10">
+          <select class="form-control" name="heladera" id="heladera" required>
+            <option value="1">Si</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="electricidad" class="col-lg-2 control-label">Electricidad</label>
+        <div class="col-lg-10">
+          <select class="form-control" name="electricidad" id="electricidad" required>
+            <option value="1">Si</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="mascota" class="col-lg-2 control-label">Mascota</label>
+        <div class="col-lg-10">
+          <select class="form-control" name="mascota" id="mascota" required>
+            <option value="1">Si</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="vivienda" class="col-lg-2 control-label">Vivienda</label>
+        <div class="col-lg-10">
+          <select class="form-control" name="vivienda" id="vivienda" required>
+            <option value="1">Casa</option>
+            <option value="2">Departamento</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="calefaccion" class="col-lg-2 control-label">Calefación</label>
+        <div class="col-lg-10">
+          <select class="form-control" name="calefaccion" id="calefaccion" required>
+            <option value="1">Tiro balanceado</option>
+            <option value="2">Garrafa</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="agua" class="col-lg-2 control-label">Agua</label>
+        <div class="col-lg-10">
+          <select class="form-control" name="agua" id="agua" required>
+            <option value="1">Potable</option>
+            <option value="2">No potable</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+          <button type="submit" class="btn btn-default">Aceptar</button>
+        </div>
+      </div>
+
+    </form>
+
+</ul>
+
+
+{% endblock %}

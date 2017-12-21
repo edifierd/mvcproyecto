@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Perfil de Paciente{% endblock %}
+
+{% block css %}
+<link href="{{CSS_BASE_URL}}/show.css" type="text/css" rel="stylesheet" media="screen,projection">
+{% endblock %}
+
+{% block body %}
+
+<div class="row">
+  <div class="col-md-12 menu">
+    <ul class="nav nav-pills">
+      {% if app.checkPermisions('usuario_destroy') %}
+        <li role="presentation" >
+          <a href="{{BASE_URL}}paciente/destroy/{{paciente.id}}"  title="Eliminar"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</a>
+        </li>
+      {% endif %}
+      {% if app.checkPermisions('usuario_update') %}
+        <li role="presentation" >
+          <a href="{{BASE_URL}}paciente/update/{{paciente.id}}" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+  <div class="col-md-7">
+    <div class="panel panel-default">
+      <div class="panel-heading"><h4 >Perfil del Paciente</h4></div>
+      <div class="panel-body">
+
+        <div class="box box-info">
+
+          <div class="box-body">
+            <div class="col-sm-6">
+              <div  align="center"> <img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive">
+
+                <input id="profile-image-upload" class="hidden" type="file">
+                <div style="color:#999;" >Clic en la imagen para cambiarla</div>
+                <!--Upload Image Js And Css-->
+              </div>
+              <br>
+              <!-- /input-group -->
+            </div>
+            <div class="clearfix"></div>
+            <hr style="margin:5px 0 5px 0;">
+
+
+            <div class="col-sm-5 col-xs-6 tital " >Nombre:</div><div class="col-sm-7 col-xs-6 ">{{paciente.nombre}}</div>
+            <div class="clearfix"></div>
+            <div class="bot-border"></div>
+
+            <div class="col-sm-5 col-xs-6 tital " >Apellido:</div><div class="col-sm-7"> {{paciente.apellido}}</div>
+            <div class="clearfix"></div>
+            <div class="bot-border"></div>
+
+            <div class="col-sm-5 col-xs-6 tital " >Domicilio:</div><div class="col-sm-7">{{paciente.domicilio}}</div>
+            <div class="clearfix"></div>
+            <div class="bot-border"></div>
+
+            <div class="col-sm-5 col-xs-6 tital " >Telefono:</div><div class="col-sm-7">{{paciente.telefono}}</div>
+            <div class="clearfix"></div>
+            <div class="bot-border"></div>
+
+            <div class="col-sm-5 col-xs-6 tital " >Fecha Nacimiento:</div><div class="col-sm-7">{{paciente.fechaNac}}</div>
+            <div class="clearfix"></div>
+            <div class="bot-border"></div>
+
+            <div class="col-sm-5 col-xs-6 tital " >Género:</div><div class="col-sm-7">{{paciente.genero}}</div>
+            <div class="clearfix"></div>
+            <div class="bot-border"></div>
+
+            <div class="col-sm-5 col-xs-6 tital " >Número documento:</div><div class="col-sm-7">{{paciente.numeroDocumento}}</div>
+            <div class="clearfix"></div>
+            <div class="bot-border"></div>
+
+            <div class="col-sm-5 col-xs-6 tital " >Tipo Documento:</div><div class="col-sm-7">{{paciente.tipoDocumento.nombre}}</div>
+            <div class="clearfix"></div>
+            <div class="bot-border"></div>
+
+            <div class="col-sm-5 col-xs-6 tital " >Datos Demograficos:</div><div class="col-sm-7"><a href="{{BASE_URL}}DatosDemograficos/show/{{datosDemograficos.id}}">Ver datos demograficos:</a></div>
+            <div class="clearfix"></div>
+            <div class="bot-border"></div>
+
+            <div class="col-sm-5 col-xs-6 tital " >Obra social:</div><div class="col-sm-7">{{paciente.obraSocial.nombre}}</div>
+            <div class="clearfix"></div>
+            <div class="bot-border"></div>
+
+            <!-- /.box-body -->
+        </div>
+          <!-- /.box -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listado de pacientes{% endblock %}
+
+{% block css %}
+<link href="{{CSS_BASE_URL}}/index.css" type="text/css" rel="stylesheet" media="screen,projection">
+{% endblock %}
+
+{% block body %}
+
+<div class="row barraSuperior">
+  <div class="col-md-3">
+    <h3>Listado de pacientes</h3>
+  </div>
+  <div class="col-md-9">
+  </div>
+  <div class="col-md-12 busqueda">
+    <form class="form-inline" action="{{BASE_URL}}paciente" method="post">
+      <div class="form-group">
+        <label class="sr-only" for="nombreyapellido">Nombre y Apellido</label>
+        <input type="text" class="form-control" id="nombreyapellido" value="{{nombreyapellido}}" name="nombreyapellido" placeholder="Nombre y apellido...">
+      </div>
+      <div class="form-group">
+        <label class="sr-only" for="documento">Documento</label>
+        <input type="text" name="documento" value="{{documento}}" placeholder="Documento">
+        <select class="form-control" name="tipo_documento">
+          <option value="todos" {% if tipo_documento == 'todos' %}selected{% endif %}>Todos</option>
+          {% for item in tipo_documentos %}
+          <option value="{{item.id}}">{{item.nombre}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <button type="submit" class="btn btn-default">Buscar</button>
+      <a href="{{BASE_URL}}paciente/create" class="btn btn-success" title="Nuevo Paciente">Nuevo Paciente</a>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="table-responsive">
+
+    <table class="table table-hover">
+      <tr>
+        <th>Nombre y Apellido </th><th>Genero</th><th>Fecha nacimiento</th><th>Documento</th><th>Domicilio</th><th>Teléfono</th><th>Obra Social</th><th>Acciones</th>
+      </tr>
+      {% for p in pacientes %}
+      <tr link="{{BASE_URL}}paciente/show/{{p.id}}" class="usuarioFila">
+        <td>{{p.apellido}} {{p.nombre}}</td>
+        <td>{{p.genero}}</td>
+        <td>{{p.fechaNac}}</td>
+        <td>{{p.tipoDocumento.nombre}} {{p.numeroDocumento}}</td>
+        <td>{{p.domicilio}}</td>
+        <td>{{p.telefono}}</td>
+        <td>{{p.obraSocial.nombre}}</td>
+        <td>
+          <a href="{{BASE_URL}}paciente/destroy/{{p.id}}" class="btn-sm btn-danger" title="Eliminar"><i class="fa fa-trash" aria-hidden="true"></i></a>
+          <a href="{{BASE_URL}}paciente/update/{{p.id}}" class="btn-sm btn-warning" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+          <a href="{{BASE_URL}}controlSalud/show/{{p.id}}" class="btn-sm btn-success" title="Control Salud"><i class="fa fa-folder" aria-hidden="true"></i></a>
+          <a href="{{BASE_URL}}grafico/show/{{p.id}}" class="btn-sm btn-info" title="Gráficas"><i class="fa fa-line-chart" aria-hidden="true"></i></a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col-md-12 pag_footer">
+    <nav aria-label="Paginacion">
+      <ul class="pagination">
+        <li {% if pagina == 1 %} class="disabled" {% endif %} >
+          <a {% if pagina != 1 %}href="{{BASE_URL}}paciente/index/1{% if estado is defined %}/{{estado}}{% endif %}{% if nombreyapellido is defined %}/{{nombreyapellido}}{% endif %}"{% endif %} aria-label="Anterior">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        {% for i in 1..cant_pag %}
+          <li {% if i == pagina %} class="active" {% endif %} >
+            <a href="{{BASE_URL}}paciente/index/{{i}}{% if nombreyapellido is defined %}/{{nombreyapellido}}{% endif %}">{{i}}</a>
+          </li>
+        {% endfor %}
+        <li {% if pagina == cant_pag %} class="disabled" {% endif %}>
+          <a {% if pagina != cant_pag %}href="{{BASE_URL}}paciente/index/{{cant_pag}}{% if nombreyapellido is defined %}/{{nombreyapellido}}{% endif %}"{% endif %} aria-label="Siguiente">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+
+{% endblock %}
+
+{% block js %}
+<script language="JavaScript" src="{{JS_BASE_URL}}/index.js"></script>
+{% endblock %}

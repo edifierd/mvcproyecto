@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Datos Demograficos{% endblock %}
+
+{% block body %}
+  <h1>Dato Demográfico</h1>
+  <ul>
+  	<li>Heladera:{{datoDemografico.heladera}}</li>
+    <li>Electricidad:{{datoDemografico.electricidad}}</li>
+    <li>Mascota:{{datoDemografico.mascota}}</li>
+    <li>Tipo Vivienda:{{datoDemografico.vivienda.nombre}}</li>
+    <li>Tipo Calefacción:{{datoDemografico.calefaccion.nombre}}</li>
+    <li>Tipo Agua:{{datoDemografico.agua.nombre}}</li>
+
+  </ul>
+{% endblock %}

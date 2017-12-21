@@ -1,0 +1,18 @@
+
+.barraSuperior{
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+.busqueda{
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.usuarioFila{
+  cursor: pointer;
+}
+
+.pag_footer{
+  text-align: center;
+  margin-top: 1%;
+}

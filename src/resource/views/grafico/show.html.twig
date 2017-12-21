@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Graficos{% endblock %}
+
+{% block body %}
+
+<h1>Gráficos del paciente {{paciente.apellido}} {{paciente.nombre}}</h1>
+
+<div id="paciente" data-id="{{paciente.id}}"></div>
+
+<div style="width:75%;">
+  <div id="pesoMujer" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+</div>
+
+<div style="width:75%;">
+  <div id="tallaMujer" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+</div>
+
+<div style="width:75%;">
+  <div id="ppcMujer" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+</div>
+
+
+<div style="width:75%;">
+  <div id="pesoHombre" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+</div>
+
+<div style="width:75%;">
+  <div id="tallaHombre" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+</div>
+
+<div style="width:75%;">
+  <div id="ppcHombre" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+</div>
+
+
+
+
+{% endblock %}
+
+{% block js %}
+<script language="JavaScript" src="{{JS_BASE_URL}}/show.js"></script>
+{% endblock %}
